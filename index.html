@@ -1,0 +1,112 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#073477">
+<meta name="mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Retail Andes</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+
+    <header>
+        <h2>Retail Andes 🛒</h2>
+        <nav>
+            <button onclick="mostrarInicio()">Inicio</button>
+            <button onclick="mostrarProductos()">Productos</button>
+            <button onclick="mostrarCarrito()">Carrito 🛒 <span id="cantidad">0</span></button>
+            <button onclick="mostrarAcceso()">Mi cuenta</button>
+        </nav>
+    </header>
+
+    <main>
+        <section id="inicio" class="pantalla">
+            <div class="portada">
+                <h1>Compra en línea y retira en tu tienda más cercana</h1>
+                <p>Encuentra tecnología, electrodomésticos y mucho más.</p>
+                <button onclick="mostrarProductos()">Ver productos</button>
+            </div>
+
+            <div class="beneficios">
+                <p>📦 Stock en tiempo real por tienda</p>
+                <p>🚚 Retiro en tienda o despacho a domicilio</p>
+                <p>🛡️ Compra segura</p>
+            </div>
+        </section>
+
+        <section id="acceso" class="pantalla oculto">
+            <h2>Crear cuenta</h2>
+
+            <form id="formularioRegistro">
+                <label>Nombre completo</label>
+                <input type="text" id="nombre" required>
+
+                <label>Correo electrónico</label>
+                <input type="email" id="correo" required>
+
+                <label>Contraseña</label>
+                <input type="password" id="contrasena" minlength="6" required>
+
+                <button type="submit">Crear cuenta</button>
+            </form>
+
+            <hr>
+
+            <h3>Iniciar sesión</h3>
+            <form id="formularioLogin">
+                <label>Correo electrónico</label>
+                <input type="email" id="correoLogin" required>
+
+                <label>Contraseña</label>
+                <input type="password" id="claveLogin" required>
+
+                <button type="submit">Ingresar</button>
+            </form>
+
+            <p id="mensajeCuenta"></p>
+        </section>
+
+        <section id="productos" class="pantalla oculto">
+            <h2>Bienvenido a Retail Andes</h2>
+            <p>Descubre nuestros productos disponibles.</p>
+            <div id="catalogo" class="catalogo"></div>
+        </section>
+
+        <section id="detalle" class="pantalla oculto">
+            <div id="informacionProducto"></div>
+        </section>
+
+        <section id="carrito" class="pantalla oculto">
+            <h2>Mi carrito de compras</h2>
+            <div id="listaCarrito"></div>
+            <h3 id="total">Total: $0</h3>
+            <button onclick="realizarCompra()">Confirmar pedido</button>
+        </section>
+
+        <section id="confirmacion" class="pantalla oculto">
+            <h2>¡Pedido recibido! ✅</h2>
+            <p id="numeroPedido"></p>
+            <p>Gracias por comprar en Retail Andes.</p>
+            <button onclick="mostrarProductos()">Seguir comprando</button>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2026 Retail Andes - Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="app.js"></script>
+    <script>
+    if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+            navigator.serviceWorker.register("./service-worker.js")
+                .then(() => console.log("Retail Andes está preparado"))
+                .catch(error => console.log("Error:", error));
+        });
+    }
+</script>
+</body>
+</html>
